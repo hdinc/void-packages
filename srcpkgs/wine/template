@@ -1,25 +1,26 @@
 # Template file for 'wine'
 pkgname=wine
-version=6.21
+version=7.2
 revision=1
 _pkgver=${version/r/-r}
 create_wrksrc=yes
 build_wrksrc=wine-${_pkgver}
 build_style=gnu-configure
-configure_args="--bindir=/usr/libexec/wine"
+configure_args="--bindir=/usr/libexec/wine $(vopt_with xshm)"
 short_desc="Run Microsoft Windows applications"
 maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="LGPL-2.1-or-later"
 homepage="http://www.winehq.org/"
 distfiles="https://dl.winehq.org/wine/source/${version%.*}.x/wine-${_pkgver}.tar.xz
  https://github.com/wine-staging/wine-staging/archive/v${_pkgver}.tar.gz"
-checksum="f7b67572b52a7150f3dcc43318b40cf10425171319edf6368a60274642e079ce
- df986de7d6ce6536c18bba4dbeab05e2bd199cfa73e3194fd6c805cdc6d51dfd"
+checksum="dfc641523c8dbc664168b6174441633d971275456bf67de2dcaa99c8daa5ee15
+ e6d19af5df9b8dea7422416fdd67e99768dfc37f287061d1d022eabc076b3be4"
 
-build_options="mingw staging"
-build_options_default="mingw"
+build_options="mingw staging xshm"
+build_options_default="mingw xshm"
 desc_option_mingw="Use the MinGW cross compiler to build WinPE DLLs"
 desc_option_staging="Apply the wine-staging patchset"
+desc_option_xshm="Enable support for the X Shared Memory Extension"
 
 lib32mode=full
 archs="i686* x86_64*"
@@ -35,19 +36,18 @@ fi
 hostmakedepends="pkg-config flex gettext
  $(vopt_if mingw "cross-${XBPS_TARGET_MACHINE%-musl}-w64-mingw32")
  $(vopt_if staging 'autoconf')"
-makedepends="gettext-devel lcms2-devel zlib-devel ncurses-devel
- glu-devel libSM-devel libXext-devel libX11-devel libXpm-devel
- libXinerama-devel libXcomposite-devel libXmu-devel libXxf86vm-devel
+makedepends="gettext-devel ncurses-devel glu-devel libSM-devel
+ libXext-devel libX11-devel libXpm-devel libXinerama-devel
+ libXcomposite-devel libXmu-devel libXxf86vm-devel
  libXcursor-devel libXrandr-devel libXdamage-devel libXi-devel
- libldap-devel alsa-lib-devel libgphoto2-devel libxml2-devel
- libxslt-devel glib-devel freetype-devel pulseaudio-devel
- mpg123-devel libgsm-devel libopenal-devel giflib-devel libpng-devel
+ libldap-devel alsa-lib-devel libgphoto2-devel glib-devel
+ freetype-devel pulseaudio-devel libopenal-devel giflib-devel
  v4l-utils-devel fontconfig-devel gnutls-devel dbus-devel sane-devel
  libpcap-devel cups-devel ocl-icd-devel vulkan-loader vkd3d-devel
- FAudio-devel gst-plugins-base1-devel"
+ gst-plugins-base1-devel SDL2-devel"
 depends="libXi libXinerama libXcomposite libXcursor libOSMesa
  desktop-file-utils hicolor-icon-theme liberation-fonts-ttf
- gnutls wine-common>=${version}_${revision} libwine>=${version}_${revision}"
+ gnutls SDL2 wine-common>=${version}_${revision} libwine>=${version}_${revision}"
 make_check=extended
 
 case $XBPS_TARGET_MACHINE in

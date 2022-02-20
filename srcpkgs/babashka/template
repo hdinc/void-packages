@@ -1,6 +1,6 @@
 # Template file for 'babashka'
 pkgname=babashka
-version=0.6.4
+version=0.7.4
 revision=1
 hostmakedepends="mandrel leiningen git"
 makedepends="zlib-devel"
@@ -9,14 +9,16 @@ short_desc="Native, fast starting Clojure interpreter for scripting"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="EPL-1.0"
 homepage="https://babashka.org/"
-_sci_commit=75b9ba73f7c9afca4c8d00023ba71456fac0f4af
-_babashka_curl_commit=2187f908c033da45978512979c53bb53321120ce
-_babashka_nrepl_commit=eadb3330f0a65e781755d8b328727698f1d41fb0
+changelog="https://github.com/babashka/babashka/blob/master/CHANGELOG.md"
+_sci_commit=9443243cf4f1bca04fdb559bdb78ea237270fcb0
+_babashka_curl_commit=3d3d117ea0f8a143a06e3cace92e4e8b6a5782df
+_babashka_nrepl_commit=e8e2273a8de6e8c45371e8ee8d5fa49e5d7dea02
 _depstar_commit=c419b8c82041855d55593c5b561fc7cea8234712
-_process_commit=4fdf33c0243ff646dfa91c4454844a33e0f025b0
-_pods_commit=f360afa6135b8bd2d384d9ba4582c0de6fdac804
-_deps_clj_commit=e3e80c5676e8f4c6e3f674f879afc061f222c0a3
-_fs_commit=d3dfbd6832ba819340f4d494cca3d55b38870cdf
+_process_commit=927935a9684804692a745f038ec75c56a867c6fb
+_pods_commit=538fc6f4147badf3a457b3eb8f9f95dd3bc947b1
+_deps_clj_commit=4ef3db5a940a6dd168e6d0c047b6fe2e9d6924f7
+_fs_commit=02e0e26edb6090dcf8f52c2154d645227f7b9c00
+_babashka_core_commit=52a6037bd4b632bffffb04394fb4efd0cdab6b1e
 distfiles="https://github.com/babashka/babashka/archive/refs/tags/v${version}.tar.gz
  https://github.com/borkdude/sci/archive/${_sci_commit}.tar.gz
  https://github.com/babashka/babashka.curl/archive/${_babashka_curl_commit}.tar.gz
@@ -25,22 +27,26 @@ distfiles="https://github.com/babashka/babashka/archive/refs/tags/v${version}.ta
  https://github.com/babashka/process/archive/${_process_commit}.tar.gz
  https://github.com/babashka/pods/archive/${_pods_commit}.tar.gz
  https://github.com/borkdude/deps.clj/archive/${_deps_clj_commit}.tar.gz
- https://github.com/babashka/fs/archive/${_fs_commit}.tar.gz"
-checksum="329d263fa6ac1d8712742aff95c92ece477130c7ab7055124a338e9ae1ebb779
- 8f07f49c4a6ffb67b5679eafbe5662937dd109ce0559c481c006123a8fef9c44
- d4efe2c84512c3914d80087a43f9dc8377b4318ab63579959c4488038d6b766b
- 916d9cc8c0a3b895a72068b95c6ac985a65d30465a9d556af8acea20aaaacc42
+ https://github.com/babashka/fs/archive/${_fs_commit}.tar.gz
+ https://github.com/babashka/babashka.core/archive/${_babashka_core_commit}.tar.gz"
+checksum="e49e2a511d61307c7493769a23c15f250229cb5eea2709dbd3ba12fe6370f8af
+ 49b654ef8227bce3506d316924ce44757e8077595e8aac761b9dcbb49869156b
+ 45abdaa5e4effd3bcfea777d02844d4634f1f80a592843eca9ec7d3544b7e16d
+ bc6a65c9bad2ced362636fca54ee5105e12706bd7c4412edd64c0bb18af15b3e
  9d214a10a4f5e4f15b9c80354dae85689a40e941ec3417203354c0dc3ce9457b
- dcb999043dfc807a1ebfae99027b4434e726f647aa52fbd70ed58202d907d39a
- 4070395956fc3cb0c22bac6fb4de1ad27130d24916e1915d8a3fe9eb591f6143
- cb0f8b0a35df214949a9d6a8cee5bfd35c9dfd6d5f7a0c22fd6bd27a54dbdb3b
- 3d03aefe44839aa61c9a3db28751d9d9bdf941843d7441a6ff5601c17c4aaec8"
+ 684fd7bd05b718084da209096bd8b6693d4ff2183b3365264786ff7893ef3c29
+ 7fea6762ecbb31d454e0b5c194d12e1e6d4ec301972aa33daf617b571e097678
+ c5748149bd3afd72cd69d6011f975a5127e870b3b55df0a810f28c8dd6152458
+ b343776de4b2bf95af58a0b223060f3f2d2f2d665e53f7b200e87f222afc4685
+ bad285812bcc7de7e0dd905c5df99045d7f92d6e2e191fc2768c06adbaaeb709"
 
 nocross="https://build.voidlinux.org/builders/aarch64_builder/builds/33769/steps/shell_3/logs/stdio"
 
 post_extract() {
 	rmdir -v ${wrksrc}/sci
 	mv ${wrksrc}/../sci-${_sci_commit} ${wrksrc}/sci
+	rmdir -v ${wrksrc}/babashka.core
+	mv ${wrksrc}/../babashka.core-${_babashka_core_commit} ${wrksrc}/babashka.core
 	rmdir -v ${wrksrc}/babashka.curl
 	mv ${wrksrc}/../babashka.curl-${_babashka_curl_commit} ${wrksrc}/babashka.curl
 	rmdir -v ${wrksrc}/babashka.nrepl
@@ -55,10 +61,6 @@ post_extract() {
 	mv ${wrksrc}/../deps.clj-${_deps_clj_commit} ${wrksrc}/deps.clj
 	rmdir -v ${wrksrc}/fs
 	mv ${wrksrc}/../fs-${_fs_commit} ${wrksrc}/fs
-}
-
-do_patch() {
-	vsed -i -e '/install native-image/d' script/compile
 }
 
 do_build() {

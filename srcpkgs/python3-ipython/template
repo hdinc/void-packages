@@ -1,6 +1,6 @@
 # Template file for 'python3-ipython'
 pkgname=python3-ipython
-version=7.29.0
+version=7.31.0
 revision=1
 wrksrc="ipython-${version}"
 build_style=python3-module
@@ -16,7 +16,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="BSD-3-Clause"
 homepage="https://ipython.org/"
 distfiles="${PYPI_SITE}/i/ipython/ipython-${version}.tar.gz"
-checksum=4f69d7423a5a1972f6347ff233e38bbf4df6a150ef20fbb00c635442ac3060aa
+checksum=346c74db7312c41fa566d3be45d2e759a528dcc2994fe48aac1a03a70cd668a3
 conflicts="python-ipython<=5.8.0_2"
 
 do_check() {

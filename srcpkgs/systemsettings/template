@@ -1,11 +1,11 @@
 # Template file for 'systemsettings'
 pkgname=systemsettings
-version=5.23.3
+version=5.24.1
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="python3 qt5-qmake qt5-host-tools kconfig
- kcoreaddons kdoctools extra-cmake-modules gettext"
+ kpackage kcoreaddons kdoctools extra-cmake-modules gettext"
 makedepends="kcmutils-devel kdoctools khtml-devel kactivities5-stats-devel
  kirigami2-devel plasma-workspace-devel"
 depends="kirigami2 setxkbmap xrdb"
@@ -14,4 +14,4 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, GFDL-1.2-only"
 homepage="https://invent.kde.org/plasma/systemsettings"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=015ea04084b144821db7a5c7f4a4d029075bc7693dfec77679a3c9927c601b45
+checksum=b356b7c3bd4c73f6374ee14b9a9b4e0c8aabe3c7f2ae8f7b007d6d0f17dbcc72

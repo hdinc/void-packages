@@ -1,6 +1,6 @@
 # Template file for 'lagrange'
 pkgname=lagrange
-version=1.8.1
+version=1.10.5
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config zip"
@@ -12,7 +12,7 @@ license="BSD-2-Clause"
 homepage="https://gmi.skyjake.fi/lagrange/"
 changelog="https://git.skyjake.fi/skyjake/lagrange/raw/branch/dev/res/about/version.gmi"
 distfiles="https://git.skyjake.fi/skyjake/lagrange/releases/download/v$version/lagrange-$version.tar.gz"
-checksum=5ecfbce492ffc2905f4980a95ec1f1b3118374c5de37120ad020d1fdaba19b32
+checksum=1ed32cacd3ac779814adb47be669e9bd92d4407b223c3d8e59831a31816f35ce
 
 post_install() {
 	vlicense LICENSE.md

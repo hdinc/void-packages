@@ -1,6 +1,6 @@
 # Template file for 'kamoso'
 pkgname=kamoso
-version=21.08.2
+version=21.12.1
 revision=1
 build_style=cmake
 hostmakedepends="
@@ -19,4 +19,4 @@ maintainer="Hervy Qurrotul Ainur Rozi <hervyqa@pm.me>"
 license="GPL-2.0-or-later"
 homepage="https://apps.kde.org/kamoso/"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=f72c81d9b8039ea5961e97d8a9a0c29051642bf697e71424200abe7c664d6d66
+checksum=380c9f0aa53029269f4a8c1e2b46834ac6da5c16eeef6aca4e524e522bde7428

@@ -1,6 +1,6 @@
 # Template file for 'Bear'
 pkgname=Bear
-version=3.0.16
+version=3.0.18
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config protobuf protobuf-devel grpc"
@@ -12,7 +12,7 @@ license="GPL-3.0-or-later"
 homepage="https://github.com/rizsotto/Bear"
 changelog="https://raw.githubusercontent.com/rizsotto/Bear/master/ChangeLog.md"
 distfiles="https://github.com/rizsotto/Bear/archive/${version}.tar.gz>${pkgname}-${version}.tar.gz"
-checksum=877ee5e89e8445f74df95f2f3896597f04b86a4e5d0dbbca07ac71027dcb362d
+checksum=ae94047c79b4f48462b66981f66a67b6a833d75d4c40e7afead491b1865f1142
 conflicts="interception-tools>=0" # /usr/bin/intercept
 
 if [ -z "$XBPS_CHECK_PKGS" ]; then
