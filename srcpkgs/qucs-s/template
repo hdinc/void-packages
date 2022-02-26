@@ -1,0 +1,13 @@
+# Template file for 'qucs-s'
+pkgname=qucs-s
+version=0.0.23
+revision=1
+build_style=cmake
+hostmakedepends="qt5-devel qt5-tools-devel qt5-script-devel qt5-svg-devel"
+depends="qt5 qt5-tools qt5-script qt5-svg"
+short_desc="Qucs-S provides GUI for different circuit simulation kernels. (Qucs fork)"
+maintainer="hdinc <macellan091@gmail.com>"
+license="GPL-2.0"
+homepage="https://github.com/ra3xdh/qucs_s"
+distfiles="https://github.com/ra3xdh/qucs_s/releases/download/${version}/qucs-s-${version}.tar.gz"
+checksum=988d39f3f3a0cffbf2a5497e718bea631f965c91cf39ea34e4e47bb4dedbb450
